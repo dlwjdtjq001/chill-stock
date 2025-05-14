@@ -6,21 +6,21 @@
 <mapper namespace="com.chilluminati.chillstock.member.stock.repository.MemberStockRepository">
     <select id="readAllMemberStock" resultType="com.chilluminati.chillstock.member.stock.vo.MemberStockVO">
         select distinct s.stock_id, p.product_id, p.product_name, p.expiration_date, s.stock_amount, i.inbound_date
-        from product p
-                 join stock_table s on p.product_id = s.product_id
+        from stock_table s
+                 join product p on s.product_id = p.product_id
                  join inbound_table i on i.product_id = p.product_id
-                 join business_table b on p.business_id = b.business_id
-        where b.user_id = #{userId} -- 로그인 한 사용자의 user_id
+                 join business_table b on b.business_id = p.business_id
+        where b.user_id = #{userId} and i.inbound_date is not null
         LIMIT #{limit} OFFSET #{offset}
     </select>
 
     <select id="readAllMemberStockByProductName" resultType="com.chilluminati.chillstock.member.stock.vo.MemberStockVO">
         select distinct s.stock_id, p.product_id, p.product_name, p.expiration_date, s.stock_amount, i.inbound_date
-        from product p
-        join stock_table s on p.product_id = s.product_id
+        from stock_table s
+        join product p on s.product_id = p.product_id
         join inbound_table i on i.product_id = p.product_id
-        join business_table b on p.business_id = b.business_id
-        WHERE b.user_id = #{userId}
+        join business_table b on b.business_id = p.business_id
+        WHERE b.user_id = #{userId} and i.inbound_date is not null
         <if test="productName != null and productName != ''">
                 AND p.product_name LIKE CONCAT('%', #{productName}, '%')
         </if>

@@ -3,6 +3,7 @@ package com.chilluminati.chillstock.member.stock.vo;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Getter
@@ -16,5 +17,5 @@ public class MemberStockVO {
     private String product_name;
     private Date expiration_date;
     private Integer stock_amount;
-    private LocalDate inbound_date;
+    private LocalDateTime inbound_date;
 }
