@@ -77,6 +77,9 @@ dependencies {
 
     //캐싱 postconstructure
     implementation 'javax.annotation:javax.annotation-api:1.3.2'
+
+    implementation 'org.springframework.session:spring-session-data-redis:2.6.4'
+    implementation("io.lettuce:lettuce-core:6.1.8.RELEASE")
 }
 
 test {
