@@ -91,7 +91,7 @@ public class AdminInboundServiceImpl implements AdminInboundService{
 
             //  상태 체크
             if (!"대기".equals(inbound.getInboundStatus())) {
-                throw new IllegalStateException("이미 처리된 입고 요청입니다. inboundId=" + inboundId);
+                throw new IllegalStateException("이미 처리된 입고 요청입니다.");
             }
 
             // 5. 제품 상세 조회
